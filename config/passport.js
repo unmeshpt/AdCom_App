@@ -1,7 +1,9 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy
+const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/User')
+const LocalUser = require('../models/LocalUser')
 
-
+//googleuser passport
 module.exports = function (passport) {
     passport.use(
       new GoogleStrategy(
@@ -11,7 +13,6 @@ module.exports = function (passport) {
           callbackURL: '/auth/google/callback',
         },
         async (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
           const newUser = {
             googleId: profile.id,
             displayName: profile.displayName,
@@ -35,6 +36,32 @@ module.exports = function (passport) {
         }
       )
     )
+  
+    passport.serializeUser((user, done) => {
+      done(null, user.id)
+    })
+  
+    passport.deserializeUser((id, done) => {
+      User.findById(id, (err, user) => done(err, user))
+    })
+  }
+
+  //localuser passport
+  module.exports = function (passport) {
+    passport.use(new LocalStrategy(
+      function(email, password, done) {
+        LocalUser.findOne({ emal: email},{password: password }, (err, user)=> {
+          if (err) { return done(err); }
+          if (!user) {
+            return done(null, false, { message: 'Incorrect username.' });
+          }
+          if (!user.validPassword(password)) {
+            return done(null, false, { message: 'Incorrect password.' });
+          }
+          return done(null, user);
+        });
+      }
+    ));
   
     passport.serializeUser((user, done) => {
       done(null, user.id)

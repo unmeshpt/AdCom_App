@@ -5,28 +5,37 @@
 
             <div class="login-wrap">
                 <!--Warning Massage-->
-                {{#if signupErr}}
+                {{#if adcomMsg}}
                 <div class="alert alert-danger alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong> {{signupErr}}</strong>
+                    <strong> {{adcomMsg}}</strong>
                 </div>
                 {{/if}}
                 <!--Warning Massage-->
-                <input type="text" class="form-control " name="First_Name" id="firstname" placeholder="First Name"
+                <!--Login with Google-->
+                <div class="section">
+                    <a href="/auth/google" class="form-control btn btn-theme"
+                        style="background-color: rgb(241, 44, 44); color:white;">
+                        <i class="fa fa-google left"></i> Signup with Google
+                    </a>
+                </div>
+                <!--Login with Google-->
+                <input type="text" class="form-control " name="firstName" id="firstName" placeholder="First Name"
                     autofocus required>
-                <input type="text" class="form-control " name="Last_Name" id="lastname" placeholder="Last Name"
+                <input type="text" class="form-control " name="lastName" id="lastName" placeholder="Last Name"
                     required>
-                <input type="text" class="form-control " name="Mobile" id="mobile" placeholder="Mobile" required>
-                <input type="email" class="form-control " name="Email" id="email" placeholder="Email" required autocomplete="off">
-                <input type="password" class="form-control " name="Password" id="password" placeholder="Password"
+                <input type="text" class="form-control " name="mobile" id="mobile" placeholder="Mobile" required>
+                <input type="email" class="form-control " name="email" id="email" placeholder="Email" required
+                    autocomplete="off">
+                <input type="password" class="form-control " name="password" id="password" placeholder="Password"
                     required autocomplete="off">
-                <input type="password" class="form-control " name="Password1" id="password1"
+                <input type="password" class="form-control " name="password1" id="password1"
                     placeholder="Confirm Password" required autocomplete="off">
                 <button class="btn btn-theme" type="submit"><i class="fa fa-lock"></i> SIGN UP</button>
             </div>
             <hr>
             <div class="registration">
-                Go back to <a href="/login">Sign in </a> Page
+                Go back to <a href="/">Sign in </a> Page
             </div>
         </form>
     </div>

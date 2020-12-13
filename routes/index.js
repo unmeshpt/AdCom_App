@@ -1,34 +1,47 @@
-const express = require('express')
-const router = express.Router()
-const { ensureAuth, ensureGuest } = require('../middleware/auth')
-const User = require('../models/User')
+const express = require("express");
+const router = express.Router();
+const { ensureAuth, ensureGuest } = require("../middleware/auth");
+const User = require("../models/User");
 
 // @desc    Login/Landing page
 // @route   GET /
-router.get('/', ensureGuest, (req, res) => {
-  res.render('login', {
-    layout: 'login',
-  })
-})
+router.get("/", ensureGuest, (req, res) => {
+  res.render("login", {
+    layout: "login",
+  });
+});
 
 // @desc    Dashboard
 // @route   GET /dashboard
-router.get('/index', ensureAuth, async (req, res) => {
+router.get("/index", ensureAuth, async (req, res) => {
   try {
     // const userInfo = await User.findOne({ googleId: req.user.id }).lean()
-    if (req.user.role==="CLIENT"){req.session.userClient=true}  
-    
-    res.render('index', {
-      userInfo:req.user,
-      userRole:req.session.userClient,
-    })
-  } catch (err) {
-    console.error(err)
-    res.render('error/500')
-  }
-})
+    if (req.user.role === "CLIENT") {
+      req.session.userClient = true;
+    }
 
-module.exports = router
+    res.render("index", {
+      userInfo: req.user,
+      adcomMsg: req.session.adcomMsg,
+      userClient: req.session.userClient,
+    });
+    req.session.adcomMsg = null;
+  } catch (err) {
+    console.error(err);
+    res.render("error/500");
+  }
+});
+
+router.post("/locallogin", async (req, res) => {
+  try {
+    console.log("Success");
+  } catch (err) {
+    console.error(err);
+    res.render("error/500");
+  }
+});
+
+module.exports = router;
 
 // const express = require("express");
 // const router = express.Router();
@@ -116,9 +129,6 @@ module.exports = router
 //     }
 //   });
 // });
-
-
-  
 
 // //Add Todo
 // router.post("/add-todo", (req, res) => {

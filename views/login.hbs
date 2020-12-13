@@ -1,6 +1,6 @@
 <div id="login-page">
   <div class="container">
-    <form class="form-login " action="/login" method="POST" autocomplete="off">
+    <form class="form-login " action="/locallogin" method="POST" autocomplete="off">
 
       <h2 class="form-login-heading ">sign in now</h2>
 
@@ -13,12 +13,13 @@
         </div>
         {{/if}}
         <!--Warning Massage-->
+        <!--Login with Google-->
         <div class="section">
           <a href="/auth/google" class="form-control btn btn-theme" style="background-color: rgb(241, 44, 44); color:white;">
             <i class="fa fa-google left"></i> Login with Google
           </a>
         </div>
-        <div class="divider"></div>
+        <!--Login with Google-->
         <input type="email" class="form-control" name="Email" id="email" placeholder="Email">
         <input type="password" class="form-control" name="Password" id="password" placeholder="Password">
 
