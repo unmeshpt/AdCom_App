@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb" class="bread-panel">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                {{!-- <li class="breadcrumb-item"><a href="#">Library</a></li> --}}
+                <li class="breadcrumb-item active" aria-current="page">Requested Quotation</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div id="edit" class="tab-pane">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 detailed">
+            <!--Warning Massage-->
+            {{#if adcomMsg}}
+            <div class="alert alert-warning alert-dismissible alertshow" role="alert">
+                <strong>Success :</strong> {{adcomMsg}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/if}}
+            <!--Warning Massage-->
+        </div>
+
+        <div class="col-lg-10 col-lg-offset-1 detailed">
+            <h4 class="mb">Requested Quotation</h4>
+            <p>Complete Details of requested quotation.</p>
+
+            <hr>
+            <div class="col-lg-12 adv-table">
+                
+                    <table id="datatable" class="ui celled table" style="width:100%">
+                        <thead class="tablehd">
+                            <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Order Types</th>
+                                <th>Requirements</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {{#each allrequestedQuote}}
+                            <tr>
+                                <td id="Si"></td>
+                                <td>{{this.Date}}</td>
+                                <td>{{this.Ordertype}}</td>
+                                <td>{{this.Requirements}}</td>
+                                <td><span id="tblstaus">{{this.Status}}</span></td>
+                               
+                                <td>
+                                    <a href="client-viewquotereq/editquoterequest/{{this._id}}" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="client-viewquotereq/deletequoterequest/{{this._id}}" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            {{/each}}
+
+                        </tbody>
+                        {{!-- <tfoot>
+                            <tr>
+                                <th>Order Items</th>
+                                <th>Actions</th>
+                            </tr>
+                        </tfoot> --}}
+                    </table>
+
+            </div>
+        </div>
+        <!-- /col-lg-8 -->
+    </div>
+    <!-- /row -->
+</div>

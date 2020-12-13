@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb" class="bread-panel">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                {{!-- <li class="breadcrumb-item"><a href="#">Library</a></li> --}}
+                <li class="breadcrumb-item active" aria-current="page">Order Types</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div id="edit" class="tab-pane">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 detailed">
+            <!--Warning Massage-->
+            {{#if noprivillage}}
+            <div class="alert alert-warning alert-dismissible alertshow" role="alert">
+                <strong>Privillage Protection :</strong> {{noprivillage}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/if}}
+            <!--Warning Massage-->
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-3 detailed">
+            <h4 class="mb">Order Types</h4>
+            <p>You can add order type</p>
+
+            <hr>
+            <form action="admin-ordertypes/addordertype" method="POST" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Type of Oders</label>
+                    <div class="col-lg-8">
+                        <input type="text" placeholder="Add order types" class="form-control" name="Ordertype"
+                            id="ordertype"></input>
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-theme01 pull-right" type="submit"><i class="fa fa-save"></i> Add
+                            Order</button>
+                    </div>
+                </div>
+            </form>
+            <hr>
+
+            <div class="col-lg-12 adv-table">
+                
+                    <table id="datatable" class="ui celled table" style="width:100%">
+                        <thead class="tablehd">
+                            <tr>
+                                <th>#</th>
+                                <th>Order Types</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#if orderitems}}
+                            {{#each orderitems}}
+                            <tr>
+                                <td id="Si"></td>
+                                <td style="width: 900px;">{{this.Ordertype}}</td>
+                                <td>
+                                    <a href="admin-ordertypes/deleteordertype/{{this._id}}" class="btn btn-sm btn-danger">Delete</a>
+                                    {{!-- <input type="button" class="btn btn-sm btn-danger" name="delete" id="{{this._id}}"
+                                        value="Delete"></input> --}}
+                                </td>
+                            </tr>
+                            {{/each}}
+                            {{/if}}
+                        </tbody>
+                        {{!-- <tfoot>
+                            <tr>
+                                <th>Order Items</th>
+                                <th>Actions</th>
+                            </tr>
+                        </tfoot> --}}
+                    </table>
+
+            </div>
+        </div>
+        <!-- /col-lg-8 -->
+    </div>
+    <!-- /row -->
+</div>

@@ -1,0 +1,63 @@
+<!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+          {{#if user.Image}}
+          <p class="centered"><a href="#"><img src="img/{{user.Image}}" class="img-circle" width="80"></a></p>
+          {{else}}
+          <p class="centered"><a href="#"><img src="img/unkownperson.jpg" class="img-circle" width="80"></a></p>
+          {{/if}}
+          
+          <h5 class="centered">{{userInfo.First_Name}} {{userInfo.Last_Name}}</h5>
+          <h6 class="centered arole">{{userInfo.Designation}}</h6>
+          <li class="mt">
+            <a class="active" href="/">
+              <i class="fa fa-dashboard"></i>
+              <span>Dashboard</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-database"></i>
+              <span>Database</span>
+              </a>
+            <ul class="sub">
+              <li><a href="#">Create New</a></li>
+              <li><a href="#">Modify</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-industry"></i>
+              <span>Companies</span>
+              </a>
+            <ul class="sub">
+              <li><a href="#">Create Company</a></li>
+              <li><a href="#">Create Admin</a></li>
+              <li><a href="#">Modify</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-users"></i>
+              <span>Admins</span>
+              </a>
+            <ul class="sub">
+              <li><a href="#">Privillages</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-envelope"></i>
+              <span>SMS</span>
+              </a>
+            <ul class="sub">
+              <li><a href="#">Add SMS</a></li>
+            </ul>
+          </li>
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <!--sidebar end--></aside>

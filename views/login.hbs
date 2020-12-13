@@ -1,0 +1,71 @@
+<div id="login-page">
+  <div class="container">
+    <form class="form-login " action="/login" method="POST" autocomplete="off">
+
+      <h2 class="form-login-heading ">sign in now</h2>
+
+      <div class="login-wrap">
+        <!--Warning Massage-->
+        {{#if loginErr}}
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <strong> {{loginErr}}</strong>
+        </div>
+        {{/if}}
+        <!--Warning Massage-->
+        <div class="section">
+          <a href="/auth/google" class="form-control btn btn-theme" style="background-color: rgb(241, 44, 44); color:white;">
+            <i class="fa fa-google left"></i> Login with Google
+          </a>
+        </div>
+        <div class="divider"></div>
+        <input type="email" class="form-control" name="Email" id="email" placeholder="Email">
+        <input type="password" class="form-control" name="Password" id="password" placeholder="Password">
+
+        <div class="login-label">
+          <input type="checkbox" Name="rememberme" id="rememberme" value="remember-me"> Stay Login
+          <a data-toggle="modal" href="login.hbs#myModal"> Forgot Password?</a>
+          </span>
+        </div>
+
+
+        <button class="btn btn-theme" type="submit"><i class="fa fa-lock"></i> SIGN
+          IN</button>
+      </div>
+      <hr>
+      <div class="registration">
+        Don't have an account yet?<br />
+        <a class="" href="/signup">
+          Create an account
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal -->
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Forgot Password?</h4>
+        </div>
+        <form action="/reset" method="POST">
+          <div class="modal-body">
+            <p>Enter your e-mail address below to reset password.</p>
+            <input type="email" class="form-control" name="Reset Email" id="resetemail" placeholder="Email"
+              autocomplete="off">
+          </div>
+
+          <div class="modal-footer">
+            <hr>
+            <button data-dismiss="modal" class="btn btn-theme" type="button">Cancel</button>
+            <button class="btn btn-theme submit" type="submit">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <!-- modal -->
+</div>

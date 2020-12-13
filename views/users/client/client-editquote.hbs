@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb" class="bread-panel">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                {{!-- <li class="breadcrumb-item"><a href="#">Library</a></li> --}}
+                <li class="breadcrumb-item active" aria-current="page">Ask Quotation</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div id="edit" class="tab-pane">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 detailed">
+            <!--Warning Massage-->
+            {{#if adcomMsg}}
+            <div class="alert alert-warning alert-dismissible alertshow" role="alert">
+                <strong>Success :</strong> {{adcomMsg}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/if}}
+            <!--Warning Massage-->
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-3 detailed">
+            
+            <h4 class="mb">REQUEST FOR THE QUOTATION YOU NEED</h4>
+            <p>Let's get started with some basic information about your project.</p>
+            <hr>
+            <form action="client-viewquotereq/update-userquotereq/{{quoteInfo._id}}" method="POST"
+                class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">I'm looking for a</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="Ordertype" id="ordertype" required>
+                           
+                           <option selected>{{quoteInfo.Ordertype}}</option>
+                            {{#each allordertypes}}
+                            <option>{{this.Ordertype}}</option>
+                            {{/each}}
+                            
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Order Description</label>
+                    <div class="col-lg-9">
+                        <textarea rows="3" placeholder="Complete requirments about design" class="form-control"
+                            name="Requirements" id="requirements"
+                            required>{{quoteInfo.Requirements}}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-3 col-lg-8">
+                        <button class="btn btn-theme01" type="submit"><i class="fa fa-save"></i> Update Request</button>
+                        <a onclick="goBack()" class="btn btn-theme01"><i class="fa fa-times"></i> Cancel</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!-- /col-lg-8 -->
+</div>
+<!-- /row -->
+</div>

@@ -1,0 +1,45 @@
+<!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+          {{#if userInfo.Avatar}}
+          <p class="centered"><a href="/client-profile"><img src="img/portfolio/{{userInfo.Avatar}}.jpg" class="img-circle" width="80"></a></p>
+          {{else}}
+          <p class="centered"><a href="/client-profile"><img src="img/portfolio/unkownperson.jpg" class="img-circle" width="80"></a></p>
+          {{/if}}
+          
+          <h5 class="centered">{{userInfo.First_Name}} {{userInfo.Last_Name}}</h5>
+          <h6 class="centered arole">{{userInfo.Designation}}</h6>
+          <li class="mt">
+            <a class="active" href="/">
+              <i class="fa fa-dashboard"></i>
+              <span>Dashboard</span>
+              </a>
+          </li>
+
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-plus"></i>
+              <span>Add Details</span>
+              </a>
+            <ul class="sub">
+              <li><a href="/admin-ordertypes">Order Items</a></li>
+            </ul>
+          </li>
+
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-inbox"></i>
+              <span>Inbox</span>
+              </a>
+            <ul class="sub">
+              <li><a href="/admin-viewquotereq">Requested Quotation</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <!--sidebar end--></aside>

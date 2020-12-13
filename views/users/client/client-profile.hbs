@@ -1,0 +1,255 @@
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb" class="bread-panel">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                {{!-- <li class="breadcrumb-item"><a href="#">Library</a></li> --}}
+                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div id="edit" class="tab-pane">
+    <div class="row">
+
+        <div class="col-lg-6 col-lg-offset-3 detailed">
+            <!--Warning Massage-->
+            {{#if updateMsgDone}}
+
+            <div class="alert alert-warning alert-dismissible alertshow" role="alert">
+                <strong>Updation Status</strong> {{updateMsgDone}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/if}}
+            <!--Warning Massage-->
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-3 detailed">
+            <h4 class="mb">Personal Information</h4>
+            <p>You can update your profile here!</p>
+            <hr>
+
+            <form action="client-profile/update-profile" method="POST" enctype="multipart/form-data"
+                class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label"> Avatar</label>
+                    <div class="col-lg-9">
+                        <img src="/img/portfolio/{{userInfo._id}}.jpg" name="imagethumb" id="imagethumb"
+                            alt="your image" class="img-thumbnail " width="200px" hight="200px"
+                            alt="Responsive image"><br><br>
+                        <input type="file" name="Avatar" id="avatar" accept=".png, .jpg, .jpeg"
+                            onchange="readURL(this);">
+                    </div>
+                </div>
+                <hr>
+
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Full Name</label>
+                    <div class="col-lg-5">
+                        <input type="text" placeholder=" " value="{{userInfo.First_Name}}" name="First_Name"
+                            id="firstname" class="form-control">
+                    </div>
+                    <div class="col-lg-4">
+                        <input type="text" placeholder=" " name="Last_Name" id="lastname" value="{{userInfo.Last_Name}}"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Description</label>
+                    <div class="col-lg-9">
+                        <textarea rows="3" cols="30" class="form-control" name="Description" id="desp"
+                            name="">{{userInfo.Description}}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Place</label>
+                    <div class="col-lg-9">
+                        <input type="text" placeholder=" " name="Place" id="palce" value="{{userInfo.Place}}"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Landmark</label>
+                    <div class="col-lg-9">
+                        <input type="text" placeholder=" " name="Landmark" id="landmark" value="{{userInfo.Landmark}}"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">State</label>
+                    <div class="col-lg-9">
+                        <input type="text" placeholder=" " name="State" id="state" value="{{userInfo.State}}"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Country</label>
+                    <div class="col-lg-9">
+                        <input type="text" placeholder=" " name="Country" id="country" value="{{userInfo.Country}}"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">PIN</label>
+                    <div class="col-lg-9">
+                        <input type="text" placeholder=" " name="Pincode" id="pincode" value="{{userInfo.Pincode}}"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Address 1</label>
+                    <div class="col-lg-9">
+                        <input type="text" placeholder=" " name="Address1" id="address1" value="{{userInfo.Address1}}"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Address 2</label>
+                    <div class="col-lg-9">
+                        <input type="text" placeholder=" " name="Address2" id="address2" value="{{userInfo.Address2}}"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Landline</label>
+                    <div class="col-lg-9">
+                        <input type="text" placeholder=" " name="Landline" id="landline" value="{{userInfo.Landline}}"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Mobile</label>
+                    <div class="col-lg-9">
+                        <input type="text" placeholder=" " name="Mobile" id="mobile" value="{{userInfo.Mobile}}"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Email</label>
+                    <div class="col-lg-9">
+                        <input type="text" placeholder=" " name="Email" id="email" value="{{userInfo.Email}}"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Whatsapp</label>
+                    <div class="col-lg-9">
+                        <input type="text" placeholder=" " name="Whatsapp" id="Whatsapp" value="{{userInfo.Whatsapp}}"
+                            class="form-control">
+                    </div>
+                    <input type="text" placeholder=" " name="UserId" id="userid" value="{{userInfo._id}}"
+                        class="form-control hidden">
+                </div>
+
+                <div class="form-group">
+
+                    <div class="col-lg-offset-3 col-lg-9">
+                        <button class="btn btn-theme01 " type="submit"><i class="fa fa-save"></i>
+                            Update</button>
+                             <a onclick="goBack()" class="btn btn-theme01"><i class="fa fa-times"></i> Cancel</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!-- /col-lg-9 -->
+</div>
+<!-- /row -->
+</div>
+
+{{!-- <div class="form-profile">
+
+    <form>
+        <div class="form-row">
+
+            <div class="form-group col-md">
+                <img src="https://www.w3schools.com/images/lamp.jpg" alt="Lamp" class="img-thumbnail">
+                <div>
+                    <button class="btn btn-theme01 btn-sm">Change Image</button>
+                </div>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="col-md-6" style="padding:0 ">
+                    <input type="text" class="form-control " value="{{userInfo.Role}}" placeholder="User Role" disabled>
+                </div>
+                <div class="col-md-6" style="padding:0 0 0 15px">
+                    <input type="text" class="form-control " value="ACTIVE" placeholder="Status" disabled>
+                </div>
+                <input type="text" class="form-control" placeholder="Last Name" autocomplete="off">
+                <input type="text" class="form-control" placeholder="Last Name" autocomplete="off">
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select id="inputState" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Check me out
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+    <div class="row mt">
+        <div class="col-lg-12">
+            <h4 class="mb"><i class="fa fa-check"></i> User Privillages</h4>
+            <hr>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+            </label>
+            <hr>
+
+        </div>
+
+    </div>
+</div> --}}

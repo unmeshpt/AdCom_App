@@ -1,0 +1,110 @@
+<h3><i class="fa fa-tasks"></i> Designer To-Do Lists</h3>
+<!-- SORTABLE TO DO LIST -->
+<div class="row mt mb">
+    <div class="col-md-12">
+        <section class="task-panel tasks-widget">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h4><i class="fa fa-tasks"></i> Complete Pending Todo Lists</h4>
+                </div>
+                <br>
+            </div>
+            <div class="panel-body">
+                <div class="task-content">
+                    <ul id="sortable" class="task-list">
+                        {{#each alltodos}}
+                        <li class="list-primary">
+                            <i class=" fa fa-ellipsis-v"></i>
+                            <div class="task-checkbox">
+                                <input type="checkbox" class="list-child" value="" />
+                            </div>
+                            <div class="task-title">
+                                <span class="task-title-sp">{{this.Date}}</span>
+                                <span class="task-title-sp"> </span>
+                                <span class="task-title-sp"><strong>{{this.Todo}}</strong></span>
+                                <span class="badge bg-theme04">{{this.Status}}</span>
+                                <div class="pull-right hidden-phone">
+                                    <button data-target="#myViewModal" data-toggle="modal" value="{{this._id}}"
+                                        class="btn viewtodo btn-theme02 btn-xs fa fa-eye"></button>
+                                </div>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class=" add-task-row">
+
+                    <a data-toggle="modal" class="btn btn-theme02  btn-sm pull-left" href="todo.hbs#myModal">Add New
+                        Tasks</a>
+                    <a class="btn btn-default btn-sm pull-right" href="todo_list.html#">See All Tasks</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!--/col-md-12 -->
+</div>
+<!-- /row -->
+
+<!-- Add todo Modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Todo?</h4>
+            </div>
+            <form action="/add-todo" method="POST">
+                <div class="modal-body">
+
+                    <input type="date" name="Date" id="date" class="form-control" required>
+                    <textarea class="form-control" name="Todo" placeholder="Add Details for todo." id="addtodoarea"
+                        rows="3" required></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                    <button class="btn btn-theme02 " type="submit">Submit</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!-- modal -->
+
+<!-- View todo Modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myViewModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Todo Details</h4>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <a href="" hidden name="Id" id="id"></a>
+
+                    <label for="">Date</label>
+                    <text type="text" name="Date" id="date" class="form-control"></text>
+
+                    <label for="">Todo Details</label>
+                    <textarea class="form-control" name="Todo" id="todo" rows="3"></textarea>
+
+                    <label for="">Uploaded File</label>
+                    <text type="text" name="File" id="file" class="form-control"></text>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default  pull-left " type="button"> Add to me</button>
+
+                    <button class="btn btn-default  pull-left " name="Download" type="button">
+                        Download</button>
+
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!-- modal -->
