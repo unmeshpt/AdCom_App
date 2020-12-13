@@ -31,33 +31,13 @@
 
 <body>
     {{> _header}}
-    {{ _sidebar}}
+     {{#if userRole}} {{>users-header/client-header}} {{>users-sidebar/client-sidebar}} {{/if}}
     <section id="main-content">
         <section class="wrapper">
             {{{body}}}
         </section>
     </section>
-    {{!-- {{#if userRole}}
-    {{#if userRole.superadmin}} {{>users-header/superadmin-header}} {{>users-sidebar/superadmin-sidebar}} {{/if}}
-    {{#if userRole.admin}} {{>users-header/admin-header}} {{>users-sidebar/admin-sidebar}} {{/if}}
-    {{#if userRole.staff}} {{>users-header/staff-header}} {{>users-sidebar/staff-sidebar}} {{/if}}
-    {{#if userRole.client}} {{>users-header/client-header}} {{>users-sidebar/client-sidebar}} {{/if}}
-
-    <section id="main-content">
-        <section class="wrapper">
-            {{#if userRole.superadmin}} {{>users-panel/sadmin-dashboard}} {{/if}}
-            {{#if userRole.admin}} {{>users-panel/admin-dashboard}} {{/if}}
-            {{#if userRole.staff}} {{>users-panel/staff-dashboard}} {{/if}}
-            {{#if userRole.client}} {{>users-panel/client-dashboard}} {{/if}}
-            {{{body}}}
-        </section>
-    </section>
-
-    {{else}}
-
-    {{{body}}}
-
-    {{/if}} --}}
+   
 
 
 

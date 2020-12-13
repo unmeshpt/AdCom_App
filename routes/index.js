@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
-
+const User = require('../models/User')
 
 // @desc    Login/Landing page
 // @route   GET /
@@ -15,10 +15,12 @@ router.get('/', ensureGuest, (req, res) => {
 // @route   GET /dashboard
 router.get('/index', ensureAuth, async (req, res) => {
   try {
-    // const stories = await Story.find({ user: req.user.id }).lean()
+    // const userInfo = await User.findOne({ googleId: req.user.id }).lean()
+    if (req.user.role==="CLIENT"){req.session.userClient=true}  
+    
     res.render('index', {
-      name: req.user.firstName,
-
+      userInfo:req.user,
+      userRole:req.session.userClient,
     })
   } catch (err) {
     console.error(err)

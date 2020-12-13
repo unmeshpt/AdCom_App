@@ -3,14 +3,14 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          {{#if userInfo.Avatar}}
-          <p class="centered"><a href="/client-profile"><img src="img/portfolio/{{}}" class="img-circle" width="80"></a></p>
+          {{#if userInfo.image}}
+          <p class="centered"><a href="/client-profile"><img src="{{userInfo.image}}" class="img-circle" width="80"></a></p>
           {{else}}
           <p class="centered"><a href="/client-profile"><img src="img/portfolio/unkownperson.jpg" class="img-circle" width="80"></a></p>
           {{/if}}
           
-          <h5 class="centered">{{name}}</h5>
-          <h6 class="centered arole">{{}}</h6>
+          <h5 class="centered">{{userInfo.displayName}}</h5>
+          <h6 class="centered arole">{{userInfo.role}}</h6>
           <li class="mt">
             <a class="active" href="/">
               <i class="fa fa-dashboard"></i>
@@ -54,4 +54,3 @@
         <!-- sidebar menu end-->
       </div>
     </aside>
-    <!--sidebar end--></aside>
