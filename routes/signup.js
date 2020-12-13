@@ -8,8 +8,4 @@ router.get('/', (req, res, next) => {
 
 })
 
-/*Post Signin info to here*/
-
-
-
 module.exports = router;
