@@ -50,7 +50,7 @@ module.exports = function (passport) {
   module.exports = function (passport) {
     passport.use(new LocalStrategy(
       function(email, password, done) {
-        LocalUser.findOne({ emal: email},{password: password }, (err, user)=> {
+        LocalUser.findOne({ email: email},{password: password }, (err, user)=> {
           if (err) { return done(err); }
           if (!user) {
             return done(null, false, { message: 'Incorrect username.' });

@@ -15,11 +15,9 @@ router.get("/", ensureGuest, (req, res) => {
 // @route   GET /dashboard
 router.get("/index", ensureAuth, async (req, res) => {
   try {
-    // const userInfo = await User.findOne({ googleId: req.user.id }).lean()
     if (req.user.role === "CLIENT") {
       req.session.userClient = true;
     }
-
     res.render("index", {
       userInfo: req.user,
       adcomMsg: req.session.adcomMsg,
@@ -32,14 +30,6 @@ router.get("/index", ensureAuth, async (req, res) => {
   }
 });
 
-router.post("/locallogin", async (req, res) => {
-  try {
-    console.log("Success");
-  } catch (err) {
-    console.error(err);
-    res.render("error/500");
-  }
-});
 
 module.exports = router;
 
