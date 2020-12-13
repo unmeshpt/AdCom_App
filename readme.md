@@ -1,6 +1,6 @@
-# StoryBooks
+# AdCom_App
 
-> Create AdCom Management app for Advertisement Company
+> Complete Advertisement Company Management
 
 This app uses Node.js/Express/MongoDB with Google OAuth for authentication
 
