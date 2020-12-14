@@ -1,6 +1,6 @@
 const express = require("express");
-const passport = require("passport");
 const router = express.Router();
+const passport = require("passport");
 
 // @desc    Auth with Google
 // @route   GET /auth/google
@@ -20,17 +20,21 @@ router.get(
 
 //@desc Local auth Callback
 //@route Get /auth/login
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/index",
+router.post("/login", passport.authenticate("local", {
+  successRedirect: "/dashboard",
     failureRedirect: "/",
     failureFlash: true,
-  }),
-  (req, res) => {
-    res.redirect("/index");
-  }
-);
+  }),(req, res, next)=>{
+    
+  });
+
+// router.post("/login", (req, res, next) => {
+//   passport.authenticate("local", {
+//     successRedirect: "/dashboard",
+//     failureRedirect: "/",
+//     failureFlash: true,
+//   })(req, res, next);
+// });
 
 // @desc    Logout user
 // @route   /auth/logout

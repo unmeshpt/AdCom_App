@@ -5,15 +5,9 @@
       <h2 class="form-login-heading ">sign in now</h2>
 
       <div class="login-wrap">
-        <!--Warning Massage-->
-        {{#if loginErr}}
-        <div class="alert alert-danger alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <strong> {{loginErr}}</strong>
-        </div>
-        {{/if}}
-        <!--Warning Massage-->
+        
         <!--Login with Google-->
+        {{> error-msg/msg}}
         <div class="section">
           <a href="/auth/google" class="form-control btn btn-theme" style="background-color: rgb(241, 44, 44); color:white;">
             <i class="fa fa-google left"></i> Login with Google

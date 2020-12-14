@@ -1616,6 +1616,18 @@ table {
   font-size: 12px;
 }
 
+/* alert */
+.alert{
+  min-height: 20px !important;
+text-align: left;
+padding:8px;
+  font-size: 10pt;
+  margin-top: 0px;
+  margin-bottom: 10px;
+
+}
+
+
 /* Calendar Configuration */
 
 #calendar {

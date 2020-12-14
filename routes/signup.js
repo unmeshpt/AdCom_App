@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt =require('bcrypt')
+const bcrypt = require("bcrypt");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 const LocalUser = require("../models/LocalUser");
 
@@ -11,38 +11,77 @@ router.get("/", ensureGuest, (req, res) => {
 });
 
 //Profile Update
-router.post("/", async (req, res) => {
-  console.log(req.body);
-  try {
-    if (req.body.password === req.body.password1) {
-      const userinfo = req.body;
-      const userexist = await LocalUser.findOne({ email: userinfo.email });
-      if (userexist===null) {
-        userinfo.displayName=userinfo.firstName + " " + userinfo.lastName
-        userinfo.password = await bcrypt.hash(userinfo.password, 10);
-        delete userinfo.password1;
-        console.log(userinfo);
-        user = await LocalUser.create(userinfo);
-        done(null, user)
-        console.log(user);
-        if (user) {
-          req.session.adcomMsg = "Account created successfully.";
-          res.redirect("/");
-        } else {
-          req.session.adcomMsg = "Create account is failed!!!";
-          res.redirect("/signup");
-        }
-      } else {
-        req.session.adcomMsg = "Email Id already Exist!";
-        res.redirect("/signup");
+router.post("/", (req, res) => {
+  console.log(req.body)
+  const {firstName, lastName, mobile, email, password, password1} = req.body;
+  let errors = []
+ 
+  //Check all reqierd filed
+  // if(!firstName || !lastName || !mobile || !email || !password || !password1){
+  //   errors.push({msg: 'Please fill in all fields'})
+  // }
+
+  //Check all reqierd filed
+  if (password !== password1) {
+    errors.push({ msg: "Password do not match" });
+  }
+
+  //Password min length 6
+  if (password.length < 6) {
+    errors.push({ msg: "Password minimum 6 characters" });
+  }
+
+  if (errors.length > 0) {
+    res.render("signup", {
+      errors,
+      firstName,
+      lastName,
+      mobile,
+      email,
+      password,
+      password1
+    });
+  } else {
+    //Validation passed
+    LocalUser.findOne({email: email})
+    .then(user=>{
+      if(user){
+        //Email exist
+        errors.push({ msg: "Email id already registered" })
+        res.render("signup", {
+          errors,
+          firstName,
+          lastName,
+          mobile,
+          email,
+          password,
+          password1
+        });
+
+      }else{
+        const newUser= new LocalUser({
+          firstName,
+          lastName,
+          mobile,
+          email,
+          password
+        });
+        bcrypt.hash(newUser.password, 10,(err, hash)=>{
+          if (err) throw err;
+          
+          //set password to hash
+          newUser.displayName=firstName + " " + lastName
+          newUser.password= hash;
+          //save user
+          newUser.save()
+          .then(user=>{
+            req.flash('success_msg', 'User registrade successfully, You can login')
+            res.redirect('/')
+          })
+          .catch(err => console.log(err));
+        });
       }
-    } else {
-      req.session.adcomMsg = "Confirm Password Mismatch";
-      res.redirect("/signup");
-    }
-  } catch (err) {
-    console.error(err);
-    res.render("error/500");
+    });
   }
 });
 

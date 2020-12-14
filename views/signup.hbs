@@ -1,17 +1,10 @@
 <div id="login-page">
     <div class="container">
-        <form class="form-login" action="/signup" method="POST">
+        <form class="form-login" action="/signup" method="POST" autocomplete="off">
             <h2 class="form-login-heading ">sign up now</h2>
 
             <div class="login-wrap">
-                <!--Warning Massage-->
-                {{#if adcomMsg}}
-                <div class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong> {{adcomMsg}}</strong>
-                </div>
-                {{/if}}
-                <!--Warning Massage-->
+                {{> error-msg/msg}}
                 <!--Login with Google-->
                 <div class="section">
                     <a href="/auth/google" class="form-control btn btn-theme"
@@ -20,17 +13,17 @@
                     </a>
                 </div>
                 <!--Login with Google-->
-                <input type="text" class="form-control " name="firstName" id="firstName" placeholder="First Name"
+                <input type="text" class="form-control " name="firstName" id="firstName"  value="{{firstName}}" placeholder="First Name"
                     autofocus required>
-                <input type="text" class="form-control " name="lastName" id="lastName" placeholder="Last Name"
+                <input type="text" class="form-control " name="lastName" id="lastName" value="{{lastName}}" placeholder="Last Name"
                     required>
-                <input type="text" class="form-control " name="mobile" id="mobile" placeholder="Mobile" required>
-                <input type="email" class="form-control " name="email" id="email" placeholder="Email" required
+                <input type="text" class="form-control " name="mobile" id="mobile" value="{{mobile}}" placeholder="Mobile" required>
+                <input type="email" class="form-control " name="email" id="email" value="{{email}}" placeholder="Email" required
                     autocomplete="off">
-                <input type="password" class="form-control " name="password" id="password" placeholder="Password"
+                <input type="password" class="form-control " name="password" id="password" value="{{password}}" placeholder="Password"
                     required autocomplete="off">
-                <input type="password" class="form-control " name="password1" id="password1"
-                    placeholder="Confirm Password" required autocomplete="off">
+                <input type="password" class="form-control " name="password1" id="password1" value="{{password1}}"
+                    placeholder="Confirm Password" required>
                 <button class="btn btn-theme" type="submit"><i class="fa fa-lock"></i> SIGN UP</button>
             </div>
             <hr>

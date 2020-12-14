@@ -11,18 +11,9 @@ const MongoStore = require('connect-mongo')(session)
 const connectDB = require('./config/db')
 const fileUpload = require('express-fileupload');
 const createError = require("http-errors");
+// const flash = require('express-flash');
+const flash = require('connect-flash');
 
-//routes
-// const indexRouter = require("./routes/index");
-// const signupRouter = require("./routes/signup");
-// const clientprofile = require("./routes/client/client-profile");
-// const todoRouter = require("./routes/staff/todo");
-// const clientinvoice = require("./routes/client/client-invoice");
-// const clientaskquote = require("./routes/client/client-askquote");
-// const adminordertypes =require("./routes/admin/admin-ordertypes");
-// const clientviewquotereq=require("./routes/client/client-viewquotereq");
-// const admininboxquotereq=require("./routes/admin/admin-viewquotereq")
-// const clienteditquote =require("./routes/client/client-editquotereq")
 
 // Load config
 dotenv.config({ path: './config/config.env' })
@@ -40,6 +31,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(fileUpload());
+app.use(flash())
 
 // Method override
 app.use(
@@ -90,12 +82,22 @@ app.engine(
 // Sessions
 app.use(
   session({
-    secret: 'keyboard cat',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: {maxAge: 1000 * 60 * 60 * 168}
   })
 )
+// //connect flash
+// app.use(flesh1)
+
+//Global Vars
+app.use((req, res, next)=>{
+res.locals.success_msg=req.flash('success_msg');
+res.locals.error_msg=req.flash('error_msg');
+next();
+})
 
 // Passport middleware
 app.use(passport.initialize())
