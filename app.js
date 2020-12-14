@@ -29,6 +29,7 @@ dotenv.config({ path: './config/config.env' })
 
 // Passport config
 require('./config/passport')(passport)
+require('./config/passport-local')(passport)
 
 //connect database
 connectDB()

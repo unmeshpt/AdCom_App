@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
         console.log(user);
         if (user) {
           req.session.adcomMsg = "Account created successfully.";
-          res.redirect("/index");
+          res.redirect("/");
         } else {
           req.session.adcomMsg = "Create account is failed!!!";
           res.redirect("/signup");
