@@ -83,8 +83,8 @@ app.engine(
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
     cookie: {maxAge: 1000 * 60 * 60 * 168}
   })
@@ -96,6 +96,7 @@ app.use(
 app.use((req, res, next)=>{
 res.locals.success_msg=req.flash('success_msg');
 res.locals.error_msg=req.flash('error_msg');
+res.locals.error=req.flash('error');
 next();
 })
 

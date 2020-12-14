@@ -20,27 +20,21 @@ router.get(
 
 //@desc Local auth Callback
 //@route Get /auth/login
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/dashboard",
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "/index",
     failureRedirect: "/",
-    failureFlash: true,
-  }),(req, res, next)=>{
-    
-  });
-
-// router.post("/login", (req, res, next) => {
-//   passport.authenticate("local", {
-//     successRedirect: "/dashboard",
-//     failureRedirect: "/",
-//     failureFlash: true,
-//   })(req, res, next);
-// });
+    failureFlash: true
+  })(req, res, next); 
+});
 
 // @desc    Logout user
 // @route   /auth/logout
 router.get("/logout", (req, res) => {
   req.logout();
+  req.flash('success_msg','You are logged out')
   res.redirect("/");
+
 });
 
 module.exports = router;

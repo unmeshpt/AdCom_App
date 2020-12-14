@@ -12,22 +12,22 @@ router.get("/", ensureGuest, (req, res) => {
 
 // @desc    Dashboard
 // @route   GET /dashboard
-router.get("/index", ensureAuth, async (req, res) => {
-
-  try {
-    if (req.user.role === "CLIENT") {
-      req.session.userClient = true;
-    }
-    res.render("index", {
-      userInfo: req.user,
-      adcomMsg: req.session.adcomMsg,
-      userClient: req.session.userClient,
-    });
-    req.session.adcomMsg = null;
-  } catch (err) {
-    console.error(err);
-    res.render("error/500");
-  }
+router.get("/index", ensureAuth, (req, res) => {
+console.log(req.user.displayName);
+  // try {
+  //   if (req.user.role === "CLIENT") {
+  //     req.session.userClient = true;
+  //   }
+  //   res.render("index", {
+  //     userInfo: req.user,
+  //     adcomMsg: req.session.adcomMsg,
+  //     userClient: req.session.userClient,
+  //   });
+  //   req.session.adcomMsg = null;
+  // } catch (err) {
+  //   console.error(err);
+  //   res.render("error/500");
+  // }
   
 });
 
