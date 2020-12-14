@@ -7,13 +7,13 @@ const LocalUser = require("../models/LocalUser");
 //localuser passport
 module.exports = function (passport) {
   passport.use(
-    new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
+    new LocalStrategy({ usernameField: "email",  passwordField: 'password' }, (email, password, done) => {
       //Match user
       LocalUser.findOne({ email: email })
         .then((user) => {
           if (!user) {
             return done(null, false, {
-              message: "That email is not registared",
+              message: "That email is not registared."
             });
           }
           //Match the Password
@@ -35,6 +35,7 @@ module.exports = function (passport) {
     done(null, user.id);
   });
   passport.deserializeUser((id, done) => {
+    console.log(id);
     LocalUser.findById(id, (err, user) => done(err, user));
   });
 };

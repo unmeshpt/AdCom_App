@@ -12,7 +12,6 @@ router.get("/", ensureGuest, (req, res) => {
 
 //Profile Update
 router.post("/", (req, res) => {
-  console.log(req.body)
   const {firstName, lastName, mobile, email, password, password1} = req.body;
   let errors = []
  

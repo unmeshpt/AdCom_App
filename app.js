@@ -28,7 +28,7 @@ connectDB()
 const app = express();
 
 // Body parser
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(fileUpload());
 app.use(flash())
