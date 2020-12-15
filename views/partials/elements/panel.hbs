@@ -1,0 +1,6 @@
+{{#each roles}}
+{{#if this.userClient}} {{> users-panel/client-dashboard}} {{/if}}
+{{#if this.userAdmin}} {{> users-panel/admin-dashboard}} {{/if}}
+{{#if this.userStaff}} {{> users-panel/staff-dashboard}} {{/if}}
+{{#if this.userSadmin}} {{> users-panel/sadmin-dashboard}} {{/if}}
+{{/each}}

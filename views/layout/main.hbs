@@ -30,10 +30,10 @@
 </head>
 
 <body>
-     {{#if userClient}} {{> users-header/client-header}}  {{> users-sidebar/client-sidebar}} {{/if}}
+     {{> elements/header-sidebar }}
     <section id="main-content">
         <section class="wrapper">
-            {{#if userClient}} {{> users-panel/client-dashboard}} {{/if}}
+            {{> elements/panel }}
             {{{body}}}
         </section>
     </section>

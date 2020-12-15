@@ -5,12 +5,15 @@ const dotenv = require('dotenv')
 const morgan = require("morgan");
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
-const passport=require('passport')
 const session = require("express-session");
+const passport=require('passport')
 const MongoStore = require('connect-mongo')(session)
 const connectDB = require('./config/db')
 const fileUpload = require('express-fileupload');
-const createError = require("http-errors");
+
+// const createError = require("http-errors");
+const app = express();
+
 // const flash = require('express-flash');
 const flash = require('connect-flash');
 
@@ -24,8 +27,6 @@ require('./config/passport-local')(passport)
 
 //connect database
 connectDB()
-
-const app = express();
 
 // Body parser
 app.use(express.urlencoded({ extended: false }));
@@ -89,8 +90,10 @@ app.use(
     cookie: {maxAge: 1000 * 60 * 60 * 168}
   })
 )
-// //connect flash
-// app.use(flesh1)
+
+// Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
 //Global Vars
 app.use((req, res, next)=>{
@@ -99,10 +102,6 @@ res.locals.error_msg=req.flash('error_msg');
 res.locals.error=req.flash('error');
 next();
 })
-
-// Passport middleware
-app.use(passport.initialize())
-app.use(passport.session())
 
 // Set global var
 app.use(function (req, res, next) {
@@ -118,12 +117,6 @@ app.use('/', require('./routes/index'))
 app.use('/signup', require('./routes/signup'))
 app.use('/auth', require('./routes/auth'))
 
-
-
-
-
-
-
 // app.use("/", indexRouter);
 // app.use("/login", loginRouter);
 // app.use("/signup", signupRouter);
@@ -135,7 +128,6 @@ app.use('/auth', require('./routes/auth'))
 // app.use("/client-editquotereq",clienteditquote)
 // app.use("/admin-ordertypes", adminordertypes);
 // app.use("/admin-viewquotereq",admininboxquotereq)
-
 
 
 // // catch 404 and forward to error handler

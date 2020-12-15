@@ -2,14 +2,15 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
 
 //LocalUser Modals
-const LocalUser = require("../models/LocalUser");
+const User = require("../models/User");
 
-//localuser passport
+//user passport
 module.exports = function (passport) {
   passport.use(
-    new LocalStrategy({ usernameField: "email",  passwordField: 'password' }, (email, password, done) => {
+    new LocalStrategy({ usernameField: "email",
+     passwordField: 'password' }, (email, password, done) => {
       //Match user
-      LocalUser.findOne({ email: email })
+      User.findOne({ email: email })
         .then((user) => {
           if (!user) {
             return done(null, false, {
@@ -31,11 +32,9 @@ module.exports = function (passport) {
   );
 
   passport.serializeUser((user, done) => {
-    console.log(user);
     done(null, user.id);
   });
   passport.deserializeUser((id, done) => {
-    console.log(id);
-    LocalUser.findById(id, (err, user) => done(err, user));
+    User.findById(id, (err, user) => done(err, user));
   });
 };

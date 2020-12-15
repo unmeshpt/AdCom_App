@@ -32,7 +32,7 @@ router.post("/login", (req, res, next) => {
 // @route   /auth/logout
 router.get("/logout", (req, res) => {
   req.logout();
-  req.flash('success_msg','You are logged out')
+  req.flash('success_msg','You are logged out.')
   res.redirect("/");
 
 });

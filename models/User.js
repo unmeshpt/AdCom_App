@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema(
   googleId: {
     type: String,
     required: true,
+    default: "localuser"
   },
   displayName: {
     type: String,

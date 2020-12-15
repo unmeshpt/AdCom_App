@@ -1,10 +1,9 @@
 var express = require("express");
 var router = express.Router();
-const usercrud = require("../../crudmodule/user_crud");
-const authenticate = require("../../config/authenticate");
+const { ensureAuth } = require("../middleware/auth");
 
 /* GET profile Page. */
-router.get("/", authenticate.validate, (req, res, next) => {
+router.get("/", ensureAuth, (req, res, next) => {
   let userInfo = req.session.user;
   let userRole = {
     superadmin: req.session.superadmin,

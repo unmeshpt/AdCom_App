@@ -4,8 +4,9 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           {{#if userInfo.image}}
-          <p class="centered"><a href="/client-profile"><img src="{{userInfo.image}}" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="/client-profile"><img src='{{userInfo.image}}' class="img-circle" width="80"></a></p>
           {{else}}
+          {{!-- <p class="centered"><a href="/client-profile"><img src="https://lh3.googleusercontent.com/a-/AOh14GgmiouNvEHLKg3ioVX-fKhHI3SqGarIYqK_PwkCHg=s96-c" class="img-circle" width="80"></a></p> --}}
           <p class="centered"><a href="/client-profile"><img src="img/portfolio/unkownperson.jpg" class="img-circle" width="80"></a></p>
           {{/if}}
           

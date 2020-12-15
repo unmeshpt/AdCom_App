@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
-const LocalUser = require("../models/LocalUser");
+const User = require("../models/User");
 
 /* GET home page. */
 router.get("/", ensureGuest, (req, res) => {
@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
     });
   } else {
     //Validation passed
-    LocalUser.findOne({email: email})
+    User.findOne({email: email})
     .then(user=>{
       if(user){
         //Email exist
@@ -58,7 +58,7 @@ router.post("/", (req, res) => {
         });
 
       }else{
-        const newUser= new LocalUser({
+        const newUser= new User({
           firstName,
           lastName,
           mobile,
