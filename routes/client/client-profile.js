@@ -1,23 +1,19 @@
 var express = require("express");
 var router = express.Router();
-const { ensureAuth } = require("../middleware/auth");
+const usermodule = require("../../crudmodule/usermodule");
+const { ensureAuth } = require("../../middleware/auth");
 
 /* GET profile Page. */
 router.get("/", ensureAuth, (req, res, next) => {
-  let userInfo = req.session.user;
-  let userRole = {
-    superadmin: req.session.superadmin,
-    admin: req.session.admin,
-    staff: req.session.staff,
-    client: req.session.client,
-  };
-  const updateMsgDone = req.session.updateMsg;
-  res.render("users/client/client-profile", {
-    userRole,
-    userInfo,
-    updateMsgDone
+  let userInfo = req.user;
+  usermodule.checkRole(userInfo).then((userrole) => {
+    try {
+      res.render("users/client/client-profile", {userInfo, userrole});
+    } catch (err) {
+      console.error(err);
+      res.render("error/500");
+    }
   });
-  req.session.updateMsg=null;
 });
 
 //update product

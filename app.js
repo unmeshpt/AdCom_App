@@ -116,6 +116,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use('/', require('./routes/index'))
 app.use('/signup', require('./routes/signup'))
 app.use('/auth', require('./routes/auth'))
+app.use("/clientprofile", require('./routes/client/client-profile'))
+app.use("/clientquotereq",  require('./routes/client/client-quotereq'));
 
 // app.use("/", indexRouter);
 // app.use("/login", loginRouter);

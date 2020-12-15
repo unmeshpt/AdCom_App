@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const usermodule = require("../crudmodule/usermodule");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 // @desc    Login/Landing page
@@ -12,51 +13,21 @@ router.get("/", ensureGuest, (req, res) => {
 
 // @desc    Dashboard
 // @route   GET /dashboard
-router.get("/index", ensureAuth, (req, res) => {
-let userInfo=req.user
-let roles=[]
-  try {
-    if (userInfo.role === "CLIENT") {roles.push({ userClient: true })}
-    if (userInfo.role === "ADMIN") {roles.push({ userAdmin: true })}
-    if (userInfo.role === "STAFF") {roles.push({ userStaff: true })}
-    if (userInfo.role === "SADMIN") {roles.push({ userSadmin: true })}
-    res.render("index", {
-      roles,
-      userInfo,
-      adcomMsg: req.session.adcomMsg
-    });
-    req.session.adcomMsg = null;
-  } catch (err) {
-    console.error(err);
-    res.render("error/500");
-  }
+router.get("/index", ensureAuth, (req, res, next) => {
+  let userInfo = req.user;
+  usermodule.checkRole(userInfo).then((userrole) => {
+    try {
+      res.render("index", {userInfo, userrole});
+    } catch (err) {
+      console.error(err);
+      res.render("error/500");
+    }
+  });
 });
-
 
 module.exports = router;
 
-// const express = require("express");
-// const router = express.Router();
-// const passport=require('passport-remember-me')
-// const usercrud = require("../crudmodule/user_crud");
-// const authenticate = require("../config/authenticate");
-
-// /* GET home page. */
-// router.get("/", authenticate.validate, (req, res) => {
-//   let userInfo = req.session.user;
-//   let userRole = {
-//     superadmin: req.session.superadmin,
-//     admin: req.session.admin,
-//     staff: req.session.staff,
-//     client: req.session.client,
-//   };
-//   let status= "Unread"
-//   usercrud.getcountQuoterequest(status).then((countnotify) => {
-//   res.render("index", { userRole, userInfo, countnotify });
-//   });
-// });
-
-// //Profile Update
+// // //Profile Update
 // router.post("/signup", (req, res) => {
 //   if (req.body.Password === req.body.Password1) {
 //     const userinfo = req.body;

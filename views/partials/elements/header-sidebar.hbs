@@ -1,5 +1,5 @@
 
-{{#each roles}}
+{{#each userrole}}
 {{#if this.userClient}} {{> users-header/client-header}} {{> users-sidebar/client-sidebar}} {{/if}}
 {{#if this.userAdmin}} {{> users-header/admin-header}} {{> users-sidebar/admin-sidebar}} {{/if}}
 {{#if this.userStaff}} {{> users-header/staff-header}} {{> users-sidebar/staff-sidebar}} {{/if}}

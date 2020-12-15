@@ -4,10 +4,10 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           {{#if userInfo.image}}
-          <p class="centered"><a href="/client-profile"><img src='{{userInfo.image}}' class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="/clientprofile"><img src='{{userInfo.image}}' class="img-circle" width="80"></a></p>
           {{else}}
           {{!-- <p class="centered"><a href="/client-profile"><img src="https://lh3.googleusercontent.com/a-/AOh14GgmiouNvEHLKg3ioVX-fKhHI3SqGarIYqK_PwkCHg=s96-c" class="img-circle" width="80"></a></p> --}}
-          <p class="centered"><a href="/client-profile"><img src="img/portfolio/unkownperson.jpg" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="/clientprofile"><img src="img/portfolio/unkownperson.jpg" class="img-circle" width="80"></a></p>
           {{/if}}
           
           <h5 class="centered">{{userInfo.displayName}}</h5>
@@ -16,7 +16,7 @@
             <a class="active" href="/">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
-              </a>
+            </a>
           </li>
 
           <li class="sub-menu">
@@ -25,7 +25,7 @@
               <span>Create</span>
               </a>
             <ul class="sub">
-              <li><a href="/client-askquote">Request Quotation</a></li>
+              <li><a href="/clientquotereq">Request Quotation</a></li>
             </ul>
           </li>
 
