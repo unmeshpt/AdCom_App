@@ -2,19 +2,46 @@ var express = require("express");
 var router = express.Router();
 const usermodule = require("../../crudmodule/usermodule");
 const { ensureAuth } = require("../../middleware/auth");
+const User=require('../../models/User')
 
-/* GET profile Page. */
+// @desc    Profile Page
+// @route   GET /clientprofile
 router.get("/", ensureAuth, (req, res, next) => {
-  let userInfo = req.user;
-  usermodule.checkRole(userInfo).then((userrole) => {
+
+  usermodule.checkRole(req.user).then(async (userrole) => {
     try {
-      res.render("users/client/client-profile", {userInfo, userrole});
+      const userInfo = await User.findById(req.user._id)
+        .lean();
+      console.log(userInfo);
+      res.render("users/client/client-profile", {
+        userInfo,
+        userrole
+      });
+
     } catch (err) {
       console.error(err);
       res.render("error/500");
     }
   });
 });
+
+
+
+
+
+
+// /* GET profile Page. */
+// router.get("/", ensureAuth, (req, res, next) => {
+//   let userInfo = req.user;
+//   usermodule.checkRole(userInfo).then((userrole) => {
+//     try {
+//       res.render("users/client/client-profile", {userInfo, userrole});
+//     } catch (err) {
+//       console.error(err);
+//       res.render("error/500");
+//     }
+//   });
+// });
 
 //update product
 router.post("/update-profile", (req, res) => {

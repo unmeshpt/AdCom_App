@@ -121,41 +121,17 @@ app.use('/auth', require('./routes/auth'))
 app.use("/clientprofile", require('./routes/client/client-profile'))
 app.use("/clientquotereq",  require('./routes/client/client-quotereq'));
 
-// app.use("/", indexRouter);
-// app.use("/login", loginRouter);
-// app.use("/signup", signupRouter);
-// app.use("/todo", todoRouter);
-// app.use("/client-profile", clientprofile);
-// app.use("/client-invoice", clientinvoice);
-// app.use("/client-askquote", clientaskquote);
-// app.use("/client-viewquotereq", clientviewquotereq);
-// app.use("/client-editquotereq",clienteditquote)
-// app.use("/admin-ordertypes", adminordertypes);
-// app.use("/admin-viewquotereq",admininboxquotereq)
-
-
-// // catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//   next(createError(404));
-// });
-
-// // error handler
-// app.use(function (err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get("env") === "development" ? err : {};
-
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render("error/500");
-// });
-
-
 //portlistener
 const PORT = process.env.PORT || 3000
 app.listen(
   PORT,
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 )
+
+// const createError = require("http-errors");
+// // catch 404 and forward to error handler
+// app.use(function (req, res, next) {
+//   next(createError(404));
+// });
 
 module.exports = app;
