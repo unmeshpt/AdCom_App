@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const usermodule = require("../crudmodule/usermodule");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
+const User = require("../models/User");
 
 // @desc    Login/Landing page
 // @route   GET /
@@ -14,10 +15,17 @@ router.get("/", ensureGuest, (req, res) => {
 // @desc    Dashboard
 // @route   GET /dashboard
 router.get("/index", ensureAuth, (req, res, next) => {
-  let userInfo = req.user;
-  usermodule.checkRole(userInfo).then((userrole) => {
+
+  usermodule.checkRole(req.user).then(async (userrole) => {
     try {
-      res.render("index", {userInfo, userrole});
+      const userInfo = await User.findById(req.user._id)
+        .lean();
+      console.log(userInfo);
+      res.render("index", {
+        userInfo,
+        userrole
+      });
+
     } catch (err) {
       console.error(err);
       res.render("error/500");

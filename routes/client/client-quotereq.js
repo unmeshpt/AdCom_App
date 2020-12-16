@@ -8,8 +8,7 @@ router.get("/", ensureAuth,  (req, res, next) => {
   let userInfo = req.user;
   usermodule.checkRole(userInfo).then(async (userrole) => {
     try {
-      let allordertypes= await Ordertype.find({})
-      console.log(allordertypes);
+      let allordertypes= await Ordertype.find({}).lean()
       res.render("users/client/client-askquote", {userInfo, allordertypes, userrole});
     } catch (err) {
       console.error(err);

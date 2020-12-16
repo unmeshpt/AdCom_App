@@ -10,12 +10,14 @@ const passport=require('passport')
 const MongoStore = require('connect-mongo')(session)
 const connectDB = require('./config/db')
 const fileUpload = require('express-fileupload');
+// const flash = require('express-flash');
+const flash = require('connect-flash');
 
 // const createError = require("http-errors");
 const app = express();
 
-// const flash = require('express-flash');
-const flash = require('connect-flash');
+
+
 
 
 // Load config
